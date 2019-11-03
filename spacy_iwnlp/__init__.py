@@ -11,7 +11,9 @@ class spaCyIWNLP(object):
 
     def __call__(self, doc):
         for token in doc:
-            token._.iwnlp_lemmas = self.get_lemmas(token)
+            if self.get_lemmas(token):
+                token.lemma_ = self.get_lemmas(token)[0]
+
         return doc
 
     def get_lemmas(self, token):
